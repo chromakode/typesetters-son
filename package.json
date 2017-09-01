@@ -1,0 +1,14 @@
+{
+  "name": "typesetters-son",
+  "description": "Utility for generating images of lightly modified webpages",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "typesetters-son": "index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^0.10.1",
+    "yargs": "^8.0.2"
+  }
+}
