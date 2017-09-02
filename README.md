@@ -4,6 +4,8 @@
 
 Typesetter's Son is a small utility for generating images based on lightly modified webpages. It loads a URL in [Headless Chrome](https://github.com/GoogleChrome/puppeteer), substitutes innerHTML for elements you specify, and takes a screenshot.
 
+It works great on SVGs too -- just sprinkle in `id` attributes where you want to modify text!
+
 ```
 Usage: typesetters-son URL -o [path]
 
