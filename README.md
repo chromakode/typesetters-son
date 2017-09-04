@@ -11,7 +11,7 @@ It works great on SVGs too -- just sprinkle in `id` attributes where you want to
 
 ## Installation
 
-Library: `npm install typesetters-son`
+Library: `npm install typesetters-son`  
 Executable: `npm install -g typesetters-son`
 
 ## Library Usage
