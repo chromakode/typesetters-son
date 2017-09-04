@@ -9,6 +9,9 @@
   },
   "repository": "chromakode/typesetters-son",
   "main": "index.js",
+  "engines": {
+    "node": ">8.0.0"
+  },
   "bin": {
     "typesetters-son": "bin.js"
   },
