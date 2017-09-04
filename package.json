@@ -10,7 +10,7 @@
   "repository": "chromakode/typesetters-son",
   "main": "index.js",
   "bin": {
-    "typesetters-son": "index.js"
+    "typesetters-son": "bin.js"
   },
   "dependencies": {
     "puppeteer": "^0.10.1",

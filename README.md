@@ -11,9 +11,29 @@ It works great on SVGs too -- just sprinkle in `id` attributes where you want to
 
 ## Installation
 
-`npm install -g typesetters-son`
+Library: `npm install typesetters-son`
+Executable: `npm install -g typesetters-son`
 
-## Usage
+## Library Usage
+
+```js
+const generateImage = require('typesetters-son')
+generateImage({
+  url: 'http://dogpatchjs.com/banner',
+  output: 'dogpatch.png',
+  width: 1024,
+  height: 800,
+  density: 1,  // defaults to 1 if unspecified
+  crop: 'body',
+  subs: {
+   '#day': new Date().toDateString(),
+   '#where': 'Spark Social',
+   '#time': '6:30pm',
+  },
+})
+```
+
+## Executable Usage
 
 ```
 Usage: typesetters-son URL -o [path]
