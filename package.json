@@ -3,6 +3,11 @@
   "description": "Utility for generating images of lightly modified webpages",
   "version": "1.0.0",
   "license": "MIT",
+  "author": {
+    "name": "Max Goodman",
+    "email": "c@chromakode.com"
+  },
+  "repository": "chromakode/typesetters-son",
   "main": "index.js",
   "bin": {
     "typesetters-son": "index.js"
