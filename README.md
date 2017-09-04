@@ -14,6 +14,14 @@ It works great on SVGs too -- just sprinkle in `id` attributes where you want to
 Library: `npm install typesetters-son`  
 Executable: `npm install -g typesetters-son`
 
+## Example:
+
+```sh
+typesetters-son http://dogpatchjs.com/banner -o dogpatch.png -w 1024 -c 'body' -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'
+```
+
+![Example output](example.png)
+
 ## Library Usage
 
 ```js
@@ -46,11 +54,3 @@ Options:
   --density, -d  pixel density                                      [default: 1]
   --subs, -s     text substitutions (JSON)
 ```
-
-## Example:
-
-```sh
-typesetters-son http://dogpatchjs.com/banner -o dogpatch.png -w 1024 -c 'body' -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'
-```
-
-![Example output](example.png)
