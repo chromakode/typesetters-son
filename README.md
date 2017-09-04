@@ -16,9 +16,7 @@ Executable: `npm install -g typesetters-son`
 
 ## Example:
 
-```sh
-typesetters-son http://dogpatchjs.com/banner -o dogpatch.png -w 1024 -c 'body' -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'
-```
+`typesetters-son http://dogpatchjs.com/banner -o dogpatch.png -w 1024 -c 'body' -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'`
 
 ![Example output](example.png)
 
