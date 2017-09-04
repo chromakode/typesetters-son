@@ -8,15 +8,20 @@
     "email": "c@chromakode.com"
   },
   "repository": "chromakode/typesetters-son",
-  "main": "index.js",
-  "engines": {
-    "node": ">8.0.0"
+  "scripts": {
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run compile"
   },
+  "main": "lib/index.js",
   "bin": {
-    "typesetters-son": "bin.js"
+    "typesetters-son": "lib/bin.js"
   },
   "dependencies": {
     "puppeteer": "^0.10.1",
     "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0"
   }
 }
