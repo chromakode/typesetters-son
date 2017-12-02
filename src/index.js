@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 
 async function generateImage({
+  browserWSEndpoint,
   url,
   output,
   width,
@@ -9,7 +10,12 @@ async function generateImage({
   subs,
   crop,
 }) {
-  const browser = await puppeteer.launch()
+  let browser
+  if (browserWSEndpoint) {
+    browser = await puppeteer.connect({browserWSEndpoint})
+  } else {
+    browser = await puppeteer.launch()
+  }
   try {
     const page = await browser.newPage()
     await page.setViewport({
