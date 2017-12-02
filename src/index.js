@@ -24,7 +24,7 @@ async function generateImage({
       deviceScaleFactor: density,
     })
 
-    await page.goto(url, {waitUntil: 'networkidle'})
+    await page.goto(url, {waitUntil: 'networkidle0'})
 
     if (subs) {
       await page.evaluate(subs => {
