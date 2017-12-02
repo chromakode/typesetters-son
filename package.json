@@ -1,7 +1,7 @@
 {
   "name": "typesetters-son",
   "description": "Utility for generating images of lightly modified webpages",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "license": "MIT",
   "author": {
     "name": "Max Goodman",

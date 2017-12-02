@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.1 - 2017-12-02
+### Fixed
+- Fixed use of removed 'networkidle' waitUntil option.
+
 ## 1.3.0 - 2017-12-02
 ### Added
 - `browserWSEndpoint` parameter for connecting to a running Chrome.
