@@ -1,5 +1,16 @@
 const puppeteer = require('puppeteer')
 
+async function performSubstitutions(page, subs) {
+  await page.evaluate(subs => {
+    for (const query of Object.keys(subs)) {
+      const text = subs[query]
+      document.querySelectorAll(query).forEach(el => {
+        el.innerHTML = text
+      })
+    }
+  }, subs)
+}
+
 async function generateImage({
   browserWSEndpoint,
   url,
@@ -27,14 +38,7 @@ async function generateImage({
     await page.goto(url, {waitUntil: 'networkidle0'})
 
     if (subs) {
-      await page.evaluate(subs => {
-        for (const query of Object.keys(subs)) {
-          const text = subs[query]
-          document.querySelectorAll(query).forEach(el => {
-            el.innerHTML = text
-          })
-        }
-      }, subs)
+      await performSubstitutions(page, subs)
     }
 
     let clip
@@ -60,4 +64,39 @@ async function generateImage({
   }
 }
 
-module.exports = generateImage
+async function generatePDF({
+  browserWSEndpoint,
+  url,
+  output,
+  subs,
+  paper,
+  removeBackground=false,
+}) {
+  let browser
+  if (browserWSEndpoint) {
+    browser = await puppeteer.connect({browserWSEndpoint})
+  } else {
+    browser = await puppeteer.launch()
+  }
+  try {
+    const page = await browser.newPage()
+    await page.goto(url, {waitUntil: 'networkidle0'})
+
+    if (subs) {
+      await performSubstitutions(page, subs)
+    }
+
+    return await page.pdf({
+      path: output,
+      format: paper,
+      printBackground: !removeBackground,
+    })
+  } finally {
+    browser.close()
+  }
+}
+
+module.exports = {
+  generateImage,
+  generatePDF,
+}

@@ -5,7 +5,7 @@
 
 [![Named for "Typesetter's Son" on Channel101](typesetters-son.jpg)](http://www.channel101.com/episode/1667)
 
-Typesetter's Son is a small utility for generating images based on lightly modified webpages. It loads a URL in [Headless Chrome](https://github.com/GoogleChrome/puppeteer), substitutes innerHTML for elements you specify, and takes a screenshot.
+Typesetter's Son is a small utility for generating images and PDFs based on lightly modified webpages. It loads a URL in [Headless Chrome](https://github.com/GoogleChrome/puppeteer), substitutes innerHTML for elements you specify, and takes a screenshot.
 
 It works great on SVGs too -- just sprinkle in `id` attributes where you want to modify text!
 
@@ -18,12 +18,14 @@ Executable: `npm install -g typesetters-son`
 
 `typesetters-son http://dogpatchjs.com/banner -o dogpatch.png -w 1024 -c 'body' -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'`
 
+`typesetters-son http://dogpatchjs.com/banner -o dogpatch.pdf -p Letter -s '{"#day": "Monday, July 17, 2017", "#where": "Spark Social", "#time": "6:30pm"}'`
+
 ![Example output](example.png)
 
 ## Library Usage
 
 ```js
-const generateImage = require('typesetters-son')
+const {generateImage} = require('typesetters-son')
 generateImage({
   url: 'http://dogpatchjs.com/banner',
   output: 'dogpatch.png',
@@ -31,6 +33,19 @@ generateImage({
   height: 800,
   density: 1,  // defaults to 1 if unspecified
   crop: 'body',
+  subs: {
+   '#day': new Date().toDateString(),
+   '#where': 'Spark Social',
+   '#time': '6:30pm',
+  },
+})
+
+const {generatePDF} = require('typesetters-son')
+generatePDF({
+  url: 'http://dogpatchjs.com/banner',
+  output: 'dogpatch.pdf',
+  paper: 'Letter',
+  removeBackground: false,
   subs: {
    '#day': new Date().toDateString(),
    '#where': 'Spark Social',
@@ -45,10 +60,12 @@ generateImage({
 Usage: typesetters-son URL -o [path]
 
 Options:
-  --output, -o   output image path                                    [required]
+  --output, -o   output image/pdf path                                [required]
   --width, -w    viewport width                                   [default: 800]
   --height, -h   viewport height                                  [default: 600]
   --crop, -c     element query to crop around
   --density, -d  pixel density                                      [default: 1]
+  --paper, -p    paper size (e.g. Letter, A4, etc.)          [default: "Letter"]
+  --remove-bg    remove bg colors (for printing)      [boolean] [default: false]
   --subs, -s     text substitutions (JSON)
 ```

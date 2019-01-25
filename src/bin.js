@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-const generateImage = require('./')
+const {generateImage, generatePDF} = require('./')
 
 const argv = require('yargs')
   .usage('Usage: $0 URL -o [path]')
   .option('output', {
     alias: 'o',
-    describe: 'output image path',
+    describe: 'output image/pdf path',
   })
   .option('width', {
     alias: 'w',
@@ -26,6 +26,16 @@ const argv = require('yargs')
     describe: 'pixel density',
     default: 1,
   })
+  .option('paper', {
+    alias: 'p',
+    describe: 'paper size (e.g. Letter, A4, etc.)',
+    default: 'Letter',
+  })
+  .option('remove-bg', {
+    describe: 'remove bg colors (for printing)',
+    default: false,
+    type: 'boolean',
+  })
   .option('subs', {
     alias: 's',
     describe: 'text substitutions (JSON)',
@@ -36,7 +46,11 @@ const argv = require('yargs')
   .argv
 
 argv.url = argv._[0]
-generateImage(argv)
+const generate = argv.output.endsWith('.pdf')
+  ? generatePDF
+  : generateImage
+
+generate(argv)
   .catch(err => {
     console.log(err.toString())
   })
